@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Loan Calculator{% endblock %}
+{% block content %} 
+<section>
+    <form method="POST">
+        <h1>Loan Cost Calculator</h1>
+        <label for="loanAmount">Loan Amount: $</label>
+        <input type="number" id="loanAmount" name="loanAmount" required>
+        <div>
+            <label for="loanTerm">Loan Term: </label>
+            <input id="loanTerm" name="years" type="number" placeholder="years">
+            <input id="loanTerm" name="months" type="number" placeholder="months">
+        </div>
+        <label for="interestRate">Annual Interest Rate: </label>
+        <span><input type="number" id="interestRate" name="interestRate">%</span>
+        <br>
+        <label for="payFrequency">Payment Frequency: </label>
+        <select id="payFrequency" name="payFrequency">
+            <option value="weekly">Weekly</option>
+            <option value="bi-weekly">Bi-weekly</option>
+            <option value="monthly">Monthly</option>
+        </select>
+        <br>
+        <button type="submit">Submit</button>
+
+
+    </form>
+
+
+</section>
+<section class="page-overview">
+    <h2>End The Debt Cycle</h2>
+    <p>Sometimes you just have to take a loan. Especially when it comes to essentials like housing, healthcare and education.</p>
+    <p> But then there are those more discretionary loans. New electronics, expensive car payments, vacations on the credit card. This second category of loans can leave you trapped in a cycle of debt.</p>
+     <p>Over time, interest will balloon the total cost of your loan. This can leave you with payments that keep piling up, year after year.</p>
+     
+     <p>The next time you're considering a discretionary loan, consider using this handy loan calculator first. It can help you see the true cost of borrowing money today.</p> 
+     
+     <p>Then, you can use our <a href="#">Investment Calculator</a> to see the difference saving all those loan payments could make. </p>
+</section>
+
+
+
+{% endblock %} 
