@@ -7,9 +7,29 @@
     <title>{% block title %}Home{% endblock%}</title>
 </head>
 <body>
+    <header>
+        {% for message in get_flashed_messages() %}
+        <div id="flash">
+            {{message}}
+            <button type="button" id="alert">
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+        </div>
+        {% endfor %}
+    </header>
     <main>
         {% block content %} 
         {% endblock %}
     </main>
+    <script>
+        const flash = document.getElementById('flash');
+        const alert = document.getElementById('alert');
+        
+        alert.addEventListener('click', function closeAlert(event) {
+            flash.remove();
+        })
+    </script>
+
 </body>
 </html>
