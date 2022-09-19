@@ -1,3 +1,7 @@
+import base64
+from io import BytesIO
+from matplotlib.figure import Figure
+import seaborn as sns
 from pdb import post_mortem
 from flask import Blueprint, g, flash, redirect, render_template, request, url_for
 
@@ -23,7 +27,8 @@ def index():
                 error = "Your loan amount must be greater than 0."
                 flash(error)
                 return redirect(url_for('views.index'))
-            loan_amount = float(request.form['loanAmount'])
+            else:
+                loan_amount = float(request.form['loanAmount'])
             if float(request.form['interestRate']) == 0:
                 error = "Your interest rate not be equal to 0."
                 flash(error)
@@ -47,11 +52,11 @@ def index():
                 total_months = (years * 12) + months
                 loan_details = loan_calculator(loan_amount, interest_rate, pay_frequency, total_months)
                 submit = True 
-                
+                loan_chart = make_chart(loan_amount, float(loan_details["interest_paid"]))
                 if 'reset' in request.form:
                     submit = False 
-                print(submit)
-                return render_template('index.html', LOAN_DETAILS = loan_details, SUBMIT = submit)
+                
+                return render_template('index.html', LOAN_DETAILS = loan_details, SUBMIT = submit, LOAN_CHART = loan_chart)
 
     return render_template('index.html', SUBMIT = False)
 
@@ -82,4 +87,18 @@ def loan_calculator(loan_amount: float, interest_rate: float, pay_frequency: str
 
     loan_details = {"total_loan_cost": total_loan_str, "period_payment": period_payment_str, "interest_paid": interest_paid_str, "period_type": pay_frequency}
     return loan_details 
+
+def make_chart(total_loan : float, interest_paid: float):
+    
+    pie_list = [total_loan, interest_paid] #list of values for pie chart
+    pie_labels = ["Principal", "Interest"]
+    colors = sns.color_palette("Paired")[0:2]
+    fig = Figure() 
+    ax = fig.subplots()
+    fig.set_facecolor("#f9f8f7")
+    ax.pie(pie_list, labels=pie_labels,colors = colors, autopct='%.1f%%', explode = [0, .025], )
+    buf = BytesIO()
+    fig.savefig(buf, format="png", bbox_inches='tight', pad_inches=0)
+    data = base64.b64encode(buf.getbuffer()).decode("ascii")
+    return data
 
