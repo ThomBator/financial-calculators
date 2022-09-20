@@ -1,4 +1,53 @@
-{% extends 'base.html' %} {% block content%} Home Page Goes Here
+{% extends 'base.html' %} {% block content%}
 
-<a href="{{url_for("views.loan")}}">Loan Calculator</a>
+<header class="homeHeader">
+  <div>
+    <img
+      class="hero"
+      src="static\pexels-jack-sparrow-4046110 (2).jpg"
+      alt="A couple looking at thier laptop"
+    />
+  </div>
+  <div class="homeHeaderText">
+    <h1>Spend Less. Invest More. Repeat.</h1>
+    <p>
+      Financial literacy is for everybody. Whatever your situation, you can
+      improve it with a few key skills. Two of the most important are
+      understanding debt and investing. Our financial calculators can help you
+      on your journey.
+    </p>
+  </div>
+</header>
+
+<main>
+  <div class="horizontalRuleDiv">
+    <hr />
+  </div>
+  <section class="mainPageSections">
+    <h2>Step #1: Pay Down Your Debt</h2>
+    <p>
+      For most of us, debt is an inevitable part of modern life. Housing,
+      healthcare, car payments. The list goes on, but not all debt is
+      inevitable. Things like reducing credit card spending or getting a more
+      affordable car can save you thousands in interest payments. That's why
+      many financial experts repaying all your high-interest (eg. credit card)
+      debts before investing. Considering taking a loan to make a big purchase?
+      Our
+      <a href="{{url_for('views.loan')}}">loan calculator</a> can help you see
+      the true cost first.
+    </p>
+  </section>
+
+  <section class="mainPageSections">
+    <h2>Step #2: Invest For Your Future</h2>
+    <p>
+      Investing lets you make interest rates work for you. When you were in
+      debt, interest rates meant you got back way less money than you put in.
+      When you invest, its the other way around. Even investing relatively small
+      amounts today can have an impact for your future. Try our
+      <a href="#">investment calculator </a>to explore the possibilities.
+    </p>
+  </section>
+</main>
+
 {% endblock %}

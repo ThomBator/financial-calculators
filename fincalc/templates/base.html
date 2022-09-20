@@ -9,6 +9,13 @@
     <link rel="icon" href="static\icons8-calculator-16.png" />
   </head>
   <body>
+    <nav>
+      <ul>
+        <li><a href="{{url_for('views.index')}}">Home</a></li>
+        <li><a href="{{url_for('views.loan')}}">Loan Calculator</a></li>
+        <li><a href="#">Investment Calculator(Coming Soon)</a></li>
+      </ul>
+    </nav>
     {% for message in get_flashed_messages() %}
     <div id="flash" class="flash">
       {{message}}
