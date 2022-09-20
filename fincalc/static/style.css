@@ -42,14 +42,15 @@ header p {
 
 .calcInput input {
     border-radius: 160rem;
-    border: 0.25rem solid #ccc;
-    border-style:outset;
-    padding: 0.1rem;
+    border: 0.1rem solid #ccc;
+    
+    padding: 0.25rem; 
+    text-indent: .25rem;
 }
 
-.calcInput input:focus, .calcInput select:focus, .dollar:focus {
+.calcInput input:focus, .calcInput select:focus {
     
-    background-color: #f0ece9;
+    background-color: #fcfaf8;
 }
 
 .calcInput input:hover, .calcInput select:hover, button:hover {
@@ -60,6 +61,7 @@ header p {
 .calcInput select {
     border-radius: 160rem;
     padding: 0.1rem;
+    text-indent: .25rem;
 }
 
 .calcButtons {

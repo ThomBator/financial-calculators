@@ -9,6 +9,10 @@ bp = Blueprint('views', __name__)
 
 @bp.route('/', methods=('GET','POST'))
 def index():
+    return render_template('index.html')
+
+@bp.route('/loan', methods=('GET', 'POST'))
+def loan():
     if request.method == 'POST':
         error = None 
         if not request.form['loanAmount']:
@@ -21,18 +25,18 @@ def index():
             error = "Please select your payment frequency"
         if error is not None: 
             flash(error)
-            return redirect(url_for('views.index'))
+            return redirect(url_for('views.loan'))
         else:
             if float(request.form['loanAmount']) == 0:
                 error = "Your loan amount must be greater than 0."
                 flash(error)
-                return redirect(url_for('views.index'))
+                return redirect(url_for('views.loan'))
             else:
                 loan_amount = float(request.form['loanAmount'])
             if float(request.form['interestRate']) == 0:
                 error = "Your interest rate not be equal to 0."
                 flash(error)
-                return redirect(url_for('views.index'))
+                return redirect(url_for('views.loan'))
             else:
                 interest_rate = float(request.form['interestRate'])
             if len(request.form['years']) == 0:
@@ -47,18 +51,17 @@ def index():
             if months == 0  and years == 0:
                 error = "You have entered 0 for both month and year. Please enter a value greater than 0 for at least one category."
                 flash(error)
-                return redirect(url_for('views.index'))
+                return redirect(url_for('views.loan'))
             else:     
                 total_months = (years * 12) + months
                 loan_details = loan_calculator(loan_amount, interest_rate, pay_frequency, total_months)
                 submit = True 
                 loan_chart = make_chart(loan_amount, float(loan_details["interest_paid"]))
                 if 'reset' in request.form:
-                    submit = False 
-                
-                return render_template('index.html', LOAN_DETAILS = loan_details, SUBMIT = submit, LOAN_CHART = loan_chart)
+                    return redirect(url_for('views.loan'))                
+                return render_template('loan.html', LOAN_DETAILS = loan_details, SUBMIT = submit, LOAN_CHART = loan_chart)
 
-    return render_template('index.html', SUBMIT = False)
+    return render_template('loan.html', SUBMIT = False)
 
 
 def loan_calculator(loan_amount: float, interest_rate: float, pay_frequency: str, total_months: int) -> dict: 

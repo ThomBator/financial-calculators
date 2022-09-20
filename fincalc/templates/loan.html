@@ -1,0 +1,96 @@
+{% extends 'base.html' %} {% block title %}Loans{% endblock %} {% block content
+%}
+<section>
+  <header>
+    <h1>Loan Cost Calculator</h1>
+    <p>
+      Thinking of taking a loan? This simple calculator can show you the true
+      cost.
+    </p>
+  </header>
+
+  <main>
+    <form method="POST" id="loanForm" class="form">
+      <div class="calcInput">
+        <label for="loanAmount">Loan Amount($):</label>
+
+        <input
+          type="number"
+          id="loanAmount"
+          name="loanAmount"
+          value="{{request.form['loanAmount']}}"
+          step="0.1"
+        />
+      </div>
+      <div class="calcInput">
+        <label for="loanTermYears">Loan Term Years: </label>
+        <input
+          id="loanTerm"
+          name="years"
+          type="number"
+          value="{{request.form['years']}}"
+        />
+      </div>
+      <div class="calcInput">
+        <label for="loanTermMonths">Loan Term Months: </label>
+        <input
+          id="loanTerm"
+          name="months"
+          type="number"
+          value="{{request.form['months']}}"
+        />
+      </div>
+      <div class="calcInput">
+        <label for="interestRate">Annual Interest Rate(%APR):</label>
+        <input
+          type="number"
+          id="interestRate"
+          name="interestRate"
+          step=".01"
+          value="{{request.form['interestRate']}}"
+        />
+      </div>
+      <div class="calcInput">
+        <label for="payFrequency">Payment Frequency: </label>
+        <select
+          id="payFrequency"
+          name="payFrequency"
+          value="{{request.form['payFrequency']}}"
+        >
+          <option value="monthly" selected>Monthly</option>
+          <option value="bi-weekly">Bi-weekly</option>
+          <option value="weekly">Weekly</option>
+        </select>
+      </div>
+
+      <div class="calcButtons">
+        <button type="submit" name="submit" value="submit">Submit</button>
+        <button type="submit" name="reset" value="reset">Reset</button>
+      </div>
+    </form>
+    {%if LOAN_DETAILS and SUBMIT %}
+
+    <div class="calcOutput">
+      <hr />
+      <ul>
+        <li>Total Loan Cost: ${{LOAN_DETAILS.total_loan_cost}}</li>
+        <li>
+          Payment({{LOAN_DETAILS.period_type}}):
+          ${{LOAN_DETAILS.period_payment}}
+        </li>
+        <li>Total Interest Paid: ${{LOAN_DETAILS.interest_paid}}</li>
+      </ul>
+    </div>
+
+    <div class="pieChart">
+      <img
+        src="data:image/png;base64 ,{{LOAN_CHART}}"
+        alt="A pie chart comparing interest to principal"
+      />
+    </div>
+
+    {% endif %}
+  </main>
+
+  {% endblock %}
+</section>
