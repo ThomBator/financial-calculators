@@ -23,23 +23,16 @@ body {
 
 }
 
-.headerText p, .mainPageSections p {
+ p {
     line-height: 1.3;
     font-weight: 300;
     margin-bottom: 0.5rem;
 }
 
 
-
-.headerText h1, .mainPageSections h2 {
+h1, h2 {
     line-height: 0.9;
     margin-top: 0.1rem;
-    
-}
-
-
-
-h1, h2 {
     color:#3a3938;
     margin-bottom: 0.5rem;
 }
