@@ -197,11 +197,11 @@ nav a:hover {
 }
 
 .horizontalRuleDiv {
-    padding: 1rem;
+    padding: 1rem 0rem 1rem 0rem;
 }
 
 .mainPageSections {
-    padding: 0.5rem;
+    padding: 0.5 rem 0rem 0.5rem 0rem;
 }
 
 #results {
