@@ -2,11 +2,11 @@
 %}
 
 <header class="header">
-  <div>
-    <img class="hero" src="static\pexels-mikhail-nilov-6963889.jpg" alt="" />
+  <div class="flexItem">
+    <img class="hero" src="static\pexels-mikhail-nilov-6963889.jpg" alt="A couple looking at their bills" />
   </div>
 
-  <div class="headerText">
+  <div class="headerText flexItem">
     <h1>Loan Cost Calculator</h1>
     <p>
       Thinking of taking a loan? This simple calculator can show you the true
@@ -21,7 +21,7 @@
           id="loanAmount"
           name="loanAmount"
           value="{{request.form['loanAmount']}}"
-          step="0.1"
+          step="0.01"
         />
       </div>
       <div class="calcInput">
@@ -30,6 +30,7 @@
           id="loanTerm"
           name="years"
           type="number"
+          step="1"
           value="{{request.form['years']}}"
         />
       </div>
@@ -39,6 +40,7 @@
           id="loanTerm"
           name="months"
           type="number"
+          step="1"
           value="{{request.form['months']}}"
         />
       </div>

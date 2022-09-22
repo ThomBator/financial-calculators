@@ -64,6 +64,11 @@ def loan():
     return render_template('loan.html', SUBMIT = False)
 
 
+
+@bp.route('/invest', methods=('POST','GET'))
+def invest():
+    return render_template('invest.html')
+
 def loan_calculator(loan_amount: float, interest_rate: float, pay_frequency: str, total_months: int) -> dict: 
     if pay_frequency == 'monthly':
         period_interest = interest_rate / 1200 

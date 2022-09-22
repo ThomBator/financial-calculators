@@ -40,6 +40,10 @@ h1, h2 {
     color:#3a3938;
     margin-bottom: 0.5rem;
 }
+.mainPageSections {
+    padding: 0.5 rem 0rem 0.5rem 0rem;
+    margin-bottom: 1.5rem;
+}
 
 button {
     background-color:#2e2c2b;
@@ -51,6 +55,10 @@ button {
 
 button:hover {
     background-color:#3b3937;
+}
+
+em {
+    font-style: italic;
 }
 
 /* global nav styles*/
@@ -114,9 +122,14 @@ nav a:hover {
 
  .pcNav ul{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
+
 
     }   
+
+    .pcNav li {
+        margin-right: 2rem;
+    }
 
      .displayResults {
         display: flex; 
@@ -191,9 +204,7 @@ nav a:hover {
     padding: 1rem 0rem 1rem 0rem;
 }
 
-.mainPageSections {
-    padding: 0.5 rem 0rem 0.5rem 0rem;
-}
+
 
 #results {
     margin-top: 4rem;
