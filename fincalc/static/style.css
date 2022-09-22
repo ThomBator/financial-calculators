@@ -23,6 +23,10 @@ body {
 
 }
 
+main {
+    margin-bottom: 5rem;
+}
+
  p {
     line-height: 1.3;
     font-weight: 300;
@@ -177,10 +181,12 @@ nav a:hover {
     margin-bottom: 0.25rem;
 }
 
-.pieChart {
+.pieChartDiv {
     margin-top: -0.25 rem;
 }
-
+.pieChart {
+    width: 80%;
+}
 .horizontalRuleDiv {
     padding: 1rem 0rem 1rem 0rem;
 }
