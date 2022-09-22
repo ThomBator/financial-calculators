@@ -64,7 +64,7 @@ em {
 /* global nav styles*/
 nav {
     background-color: #c0bcb8;
-    padding: 1rem;
+    padding: 1rem 0 1rem 0;
 }
 
 nav li {
