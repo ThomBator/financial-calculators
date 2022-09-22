@@ -64,6 +64,7 @@ nav {
 
 nav li {
     list-style: none;
+    margin-bottom: 0.25rem;
     
 
 }
@@ -84,44 +85,35 @@ nav a:hover {
     border: none;
 }
 
-
-.hero {
-    max-width: 10rem;
+.navDiv {
+    display: inline;
 }
+
+
 
 
 /* media queries */
 
-@media screen and (max-width: 1199px) {
+@media screen and (max-width: 1299px) {
     .pcNav {
         display: none;
     }
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 1300px) {
 
-
-    .hero {
-       max-width: 15rem;    
-    }
-
-    .header{
+        .header{
          display: flex; 
-         gap: 2rem;
+         gap: 1rem;
     }
-   
-}
-
-@media screen and (min-width: 1200px) {
+   .flexItem {
+        flex: 1 1 0px;
+    }
 
     .mobileNavToggle, .mobileNav {
     display: none;
 }
 
-     .hero {
-       max-width: 30rem;
-
-}
 
  .pcNav ul{
     display: flex;
