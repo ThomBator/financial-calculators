@@ -14,11 +14,42 @@
   </head>
   <body>
     <nav>
-      <ul>
-        <li><a href="{{url_for('views.index')}}">Home</a></li>
-        <li><a href="{{url_for('views.loan')}}">Loan Calculator</a></li>
-        <li><a href="#">Investment Calculator(Coming Soon)</a></li>
-      </ul>
+      <div x-data="{isOpen : false}" class="navDiv">
+        <div class="mobileButtonDiv">
+          <button
+            class="mobileNavToggle"
+            type="button"
+            aria-label="toggle menu"
+            @click="isOpen = !isOpen"
+          >
+            <img
+              class="mobileNavToggleImg"
+              src="static\baseline_menu_black_24dp.png"
+              alt=""
+            />
+          </button>
+        </div>
+        <div class="pcNav">
+          <ul class="pcNav">
+            <li><a href="{{url_for('views.index')}}">Home</a></li>
+            <li><a href="{{url_for('views.loan')}}">Loan Calculator</a></li>
+            <li><a href="#">Investment Calculator(Coming Soon)</a></li>
+          </ul>
+        </div>
+        <div x-show="isOpen" class="mobileNav">
+          <ul>
+            <hr />
+            <li><a href="{{url_for('views.index')}}">Home</a></li>
+
+            <li><a href="{{url_for('views.loan')}}">Loan Calculator</a></li>
+
+            <li><a href="#">Investment Calculator(Coming Soon)</a></li>
+            <hr />
+          </ul>
+        </div>
+      </div>
+
+      <!--Mobile menu button-->
     </nav>
     {% for message in get_flashed_messages() %}
     <div id="flash" class="flash">
