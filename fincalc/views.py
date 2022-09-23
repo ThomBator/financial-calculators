@@ -56,7 +56,7 @@ def loan():
                 total_months = (years * 12) + months
                 loan_details = loan_calculator(loan_amount, interest_rate, pay_frequency, total_months)
                 submit = True 
-                loan_chart = loan_chart(loan_amount, float(loan_details["interest_paid"]))
+                loan_chart = pie_chart(loan_amount, float(loan_details["interest_paid"]))
                 if 'reset' in request.form:
                     return redirect(url_for('views.loan'))                
                 return render_template('loan.html', LOAN_DETAILS = loan_details, SUBMIT = submit, LOAN_CHART = loan_chart)
@@ -96,7 +96,7 @@ def loan_calculator(loan_amount: float, interest_rate: float, pay_frequency: str
     loan_details = {"total_loan_cost": total_loan_str, "period_payment": period_payment_str, "interest_paid": interest_paid_str, "period_type": pay_frequency}
     return loan_details 
 
-def loan_chart(total_loan : float, interest_paid: float):
+def pie_chart(total_loan : float, interest_paid: float):
     
     pie_list = [total_loan, interest_paid] #list of values for pie chart
     pie_labels = ["Principal", "Interest"]

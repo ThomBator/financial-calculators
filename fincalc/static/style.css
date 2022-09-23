@@ -13,10 +13,12 @@
 body {
     
     background-color: #f9f8f7;
+    padding-top: 8rem;
+    padding-bottom: 10rem;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
- header, main, .flash, nav ul, .hero, .mobileButtonDiv {
+ header, main, .flash, nav ul, .hero, .mobileButtonDiv, footer p {
 
     max-width: 80%; 
     margin: 0.5rem auto 0.5rem auto;
@@ -61,10 +63,10 @@ em {
     font-style: italic;
 }
 
-/* global nav styles*/
-nav {
+/* global nav and footer styles*/
+nav, footer {
     background-color: #c0bcb8;
-    padding: 1rem 0 1rem 0;
+    padding: 0.5rem 0 0.5rem 0;
 }
 
 nav li {
@@ -83,6 +85,18 @@ nav a {
 nav a:hover {
     color: #7b7771;
 } 
+
+nav {
+    position: fixed;
+    width: 100%;
+    top: 0px;
+}
+
+footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+}
 /*mobile nav styles */ 
 
 .mobileNavToggle {
