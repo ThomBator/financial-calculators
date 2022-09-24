@@ -14,7 +14,7 @@
       <a href="https://en.wikipedia.org/wiki/S%26P_500">S&P 500 index </a>fund
       in 1980 it would be worth over $1,000,000 today. Regular monthly
       contributions can add up to life-changing amounts over time. Use our
-      investment calculator to see what your financial future could look like.
+      investment calculator to see what your financial future could look like. All results are based on annual compounding.
       <em>
           Note: by default this calculator uses the S&P 500's
           <a
@@ -32,6 +32,7 @@
           id="initialDeposit"
           name="initialDeposit"
           step="0.01"
+          value="{{request.form['initialDeposit']}}"
         />
       </div>
       <div class="calcInput">
@@ -41,6 +42,7 @@
           id="monthlyDeposit"
           name="monthlyDeposit"
           step="0.01"
+          value="{{request.form['monthlyDeposit']}}"
         />
       </div>
       <div class="calcInput">
@@ -50,17 +52,21 @@
           id="interestRate"
           name="interestRate"
           step="0.01"
+          {% if SUBMIT %}
+          value="{{request.form['interestRate']}}"
+          {% else %}
           value="11.82"
+          {% endif %}
         />
 
         <div class="calcInput">
-        <label for="years`">Years to Invest: </label
+        <label for="years">Years to Invest: </label
         ><input
           type="number"
           id="years"
-          name="interestRate"
+          name="years"
           step="1"
-          
+          value="{{request.form['years']}}"
         />
 
 
@@ -72,5 +78,28 @@
     </form>
   </div>
 </header>
+
+{% if SUBMIT  %}
+  <main class="displayResults">
+    <div class="calcOutput">
+      <h2>Results: </h2>
+      <hr/>
+      <ul>
+        <li>Investment Value After {{INVEST_DETAILS.years}} Years : ${{INVEST_DETAILS.total}}</li>
+        <li>Your Total Deposits: ${{INVEST_DETAILS.total_deposits}}</li>
+        <li>Total Profits: ${{INVEST_DETAILS.profit}} </li>
+        
+      </ul>
+
+
+
+    </div>
+  </main>
+  <div id="results"</div>
+<script defer>
+  const element = document.getElementById("results");
+  element.scrollIntoView();
+</script>
+{% endif %}
 
 {% endblock%}

@@ -14,60 +14,75 @@ def index():
 @bp.route('/loan', methods=('GET', 'POST'))
 def loan():
     if request.method == 'POST':
+        if 'reset' in request.form:
+                return redirect(url_for('views.loan'))  
         error = None 
-        if not request.form['loanAmount']:
+        if not request.form['loanAmount'] or float(request.form['loanAmount']) <= 0:
             error = "Loan amount is required"
-        elif not request.form['years'] and not request.form['months']:
-            error = "You must enter a minimum of 1 month or 1 year."
-        elif not request.form['interestRate']:
-            error = "Please enter your interest rate pecentage"
+        elif (not request.form['years'] and not request.form['months']) or (int(request.form['years']) <=0 and int(request.form['months']) <= 0):
+            error = "You must enter a minimum of 1 month or 1 year with a value greater than 0."
+        elif not request.form['interestRate'] or float(request.form['interestRate']) <= 0:
+            error = "Please enter an interest rate greater than 0"
         elif not request.form['payFrequency']:
             error = "Please select your payment frequency"
         if error is not None: 
-            flash(error)
+            flash('Error: ' + error)
             return redirect(url_for('views.loan'))
         else:
-            if float(request.form['loanAmount']) == 0:
-                error = "Your loan amount must be greater than 0."
-                flash(error)
-                return redirect(url_for('views.loan'))
-            else:
-                loan_amount = float(request.form['loanAmount'])
-            if float(request.form['interestRate']) == 0:
-                error = "Your interest rate not be equal to 0."
-                flash(error)
-                return redirect(url_for('views.loan'))
-            else:
-                interest_rate = float(request.form['interestRate'])
+            loan_amount = float(request.form['loanAmount'])
+            interest_rate = float(request.form['interestRate'])
             if len(request.form['years']) == 0:
                 years = 0 
-            else: 
+            else:
                 years = int(request.form['years'])
             if len(request.form['months']) == 0:
-                months = 0 
-            else: 
-                months = int(request.form['months']) 
+                months = 0
+            else:
+                months = int(request.form['months'])
             pay_frequency = request.form['payFrequency']
-            if months == 0  and years == 0:
-                error = "You have entered 0 for both month and year. Please enter a value greater than 0 for at least one category."
-                flash(error)
-                return redirect(url_for('views.loan'))
-            else:     
-                total_months = (years * 12) + months
-                loan_details = loan_calculator(loan_amount, interest_rate, pay_frequency, total_months)
-                submit = True 
-                loan_chart = pie_chart(loan_amount, float(loan_details["interest_paid"]))
-                if 'reset' in request.form:
-                    return redirect(url_for('views.loan'))                
-                return render_template('loan.html', LOAN_DETAILS = loan_details, SUBMIT = submit, LOAN_CHART = loan_chart)
-
+            
+            total_months = (years * 12) + months
+            loan_details = loan_calculator(loan_amount, interest_rate, pay_frequency, total_months)
+            loan_chart = pie_chart(loan_amount, float(loan_details["interest_paid"]))
+                          
+            return render_template('loan.html', LOAN_DETAILS = loan_details, SUBMIT = True, LOAN_CHART = loan_chart)
     return render_template('loan.html', SUBMIT = False)
-
-
-
+        
+                
 @bp.route('/invest', methods=('POST','GET'))
 def invest():
-    return render_template('invest.html')
+    if request.method == 'POST':
+        
+        if 'reset' in request.form:
+                return redirect(url_for('views.invest'))
+        error = None
+        if (not request.form['initialDeposit'] and not request.form['monthlyDeposit']) or (float(request.form['initialDeposit']) <= 0 and float(request.form['monthlyDeposit']) <= 0):
+            error = 'You must enter a value greater than 0 for either Initial Deposit or Monthtly Deposit.'
+
+        elif not request.form['interestRate'] or float(request.form['interestRate']) <= 0:
+            error = 'You must enter an interest rate greater than 0.'
+        elif not request.form['years'] or int(request.form['years']) <= 0:
+            error = 'You must enter a number of years greater than 0.' 
+        if error is not None: 
+            flash('Error: ' + error)
+            return redirect(url_for('views.invest'))  
+        else:
+            if len(request.form['initialDeposit']) == 0:
+                initial_deposit = 0
+            else:
+                initial_deposit = float(request.form['initialDeposit'])
+            if len(request.form['monthlyDeposit']) == 0:
+                monthly_deposit = 0
+            else:    
+                monthly_deposit = float(request.form['monthlyDeposit'])
+            
+            interest_rate = float(request.form['interestRate']) 
+            years = int(request.form['years'])
+            invest_details = invest_calculator(initial_deposit, monthly_deposit, interest_rate, years) 
+            print(invest_details)
+            return render_template('invest.html', INVEST_DETAILS = invest_details, SUBMIT = True)
+
+    return render_template('invest.html', SUBMIT = False)
 
 def loan_calculator(loan_amount: float, interest_rate: float, pay_frequency: str, total_months: int) -> dict: 
     if pay_frequency == 'monthly':
@@ -89,14 +104,12 @@ def loan_calculator(loan_amount: float, interest_rate: float, pay_frequency: str
     period_payment = round(total_loan_cost / total_periods, 2)
     interest_paid = round(total_loan_cost - loan_amount,2)  
     total_loan_cost = round(total_loan_cost, 2) 
-    total_loan_str = "{:.2f}".format(total_loan_cost) 
-    period_payment_str = "{:.2f}".format(period_payment)
-    interest_paid_str =  "{:.2f}".format(interest_paid)
 
-    loan_details = {"total_loan_cost": total_loan_str, "period_payment": period_payment_str, "interest_paid": interest_paid_str, "period_type": pay_frequency}
+
+    loan_details = {"total_loan_cost": total_loan_cost, "period_payment": period_payment, "interest_paid": interest_paid, "period_type": pay_frequency}
     return loan_details 
 
-def pie_chart(total_loan : float, interest_paid: float):
+def pie_chart(total_loan : float, interest_paid: float) -> base64:
     
     pie_list = [total_loan, interest_paid] #list of values for pie chart
     pie_labels = ["Principal", "Interest"]
@@ -108,24 +121,45 @@ def pie_chart(total_loan : float, interest_paid: float):
     buf = BytesIO()
     fig.savefig(buf, format="png", bbox_inches='tight', pad_inches=0)
     data = base64.b64encode(buf.getbuffer()).decode("ascii")
+    print(type(data))
     return data
-def invest_calculato(initial_deposit: float, monthly_deposit: float,avg_annual_rate: float, years: int) -> dict: 
+
+
+def invest_calculator(initial_deposit: float, monthly_deposit: float, avg_annual_rate: float, years: int) -> dict: 
     #calculation will be done with monthly compounding so years need to be converted
-    months = int(years * 12)
-    #You must divide by 100 to get from percent to decimal value, and 12 to get from years to months (12 * 100 = 1200) 
-    avg_monthly_rate = avg_annual_rate / 120000
-    total = initial_deposit + monthly_deposit
-    total_deposits = initial_deposit + (monthly_deposit * months)
-    if monthly_deposit != 0:
-    #interest will not be calculated until the end of the first month, so we start at 1 instead of 0.     
-        for i in range(1, months):
-            total *= 1 + avg_monthly_rate
-            total += monthly_deposit
+    
+    
+    initial_deposit_return = initial_deposit * pow((1 + avg_annual_rate / 100), years)
+    '''
+    for the monthly deposits, we are assuming annual compounding to keep things simple, so _monthly_deposit will be multiplied by 12. Credit to https://www.wallstreetiswaiting.com/running-the-numbers-1/calculating-interest-recurring-payments/ for the math regarding monthly contributions. 
+    '''
+    monthly_deposits_return = (
+        monthly_deposit * ((pow((1 +avg_annual_rate / 100), years)-1)/(avg_annual_rate / 100)) * 12
+
+    )
+
+    returns_each_year = []
+    for i in range(1, years + 1):
+        initial_deposit_yearly = initial_deposit * pow((1 + avg_annual_rate / 100), i)
+        monthly_deposits_yearly = (
+        monthly_deposit * ((pow((1 +avg_annual_rate / 100), i)-1)/(avg_annual_rate / 100)) * 12
+    )
+        returns_each_year.append(initial_deposit_yearly + monthly_deposits_yearly)
+    total = initial_deposit_return + monthly_deposits_return
+
+    total_deposits = initial_deposit + (monthly_deposit * years * 12)
+    # A list of yearly values can also be used to create an informative graph 
+    
+
     total = round(total, 2)
     profit = round(total - total_deposits,2) 
-    total_str = "{.2f}".format(total)
-    profit_str = "{.2f}".format(profit)
+    total_str = "{:,.2f}".format(total)
+    profit_str = "{:,.2f}".format(profit)
+    total_deposits_str = "{:,.2f}".format(round(total_deposits, 2))
     
-    invest_details = {"total": total_str, "years": years, "total_deposits":total_deposits, "profit":profit_str}
+    invest_details = {"total": total_str, "years": years, "total_deposits":total_deposits_str, "profit":profit_str, "returns_each_year": returns_each_year}
     return invest_details
+
+def invest_chart(running_returns :list, years :int):
+    pass
 

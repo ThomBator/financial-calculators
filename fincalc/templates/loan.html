@@ -75,16 +75,18 @@
   </div>
 </header>
 
-{%if LOAN_DETAILS and SUBMIT %}
+{% if LOAN_DETAILS and SUBMIT %}
 <main class="displayResults">
+  
   <div class="calcOutput">
+    <h2>Results:</h2>
     <hr />
     <ul>
-      <li>Total Loan Cost: ${{LOAN_DETAILS.total_loan_cost}}</li>
+      <li>Total Loan Cost: ${{"{:,.2f}".format(LOAN_DETAILS.total_loan_cost)}}</li>
       <li>
-        Payment({{LOAN_DETAILS.period_type}}): ${{LOAN_DETAILS.period_payment}}
+        Payment({{LOAN_DETAILS.period_type}}): ${{"{:,.2f}".format(LOAN_DETAILS.period_payment)}}
       </li>
-      <li>Total Interest Paid: ${{LOAN_DETAILS.interest_paid}}</li>
+      <li>Total Interest Paid: ${{"{:,.2f}".format(LOAN_DETAILS.interest_paid)}}</li>
     </ul>
   </div>
 
