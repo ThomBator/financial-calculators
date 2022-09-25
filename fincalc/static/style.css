@@ -168,7 +168,7 @@ footer {
 .calcInput input {
     border-radius: 160rem;
     border: 0.1rem solid #ccc;
-    max-width: 8rem;
+    max-width: 6rem;
     padding: 0.25rem; 
     text-indent: .25rem;
 }
