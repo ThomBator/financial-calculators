@@ -32,6 +32,7 @@
           id="initialDeposit"
           name="initialDeposit"
           step="0.01"
+          min="0"
           value="{{request.form['initialDeposit']}}"
         />
       </div>
@@ -42,6 +43,7 @@
           id="monthlyDeposit"
           name="monthlyDeposit"
           step="0.01"
+          min="0"
           value="{{request.form['monthlyDeposit']}}"
         />
       </div>
@@ -52,6 +54,7 @@
           id="interestRate"
           name="interestRate"
           step="0.01"
+          min="0.1"
           {% if SUBMIT %}
           value="{{request.form['interestRate']}}"
           {% else %}
@@ -66,6 +69,7 @@
           id="years"
           name="years"
           step="1"
+          min="1"
           value="{{request.form['years']}}"
         />
 

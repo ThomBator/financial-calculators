@@ -17,9 +17,11 @@ def loan():
         if 'reset' in request.form:
                 return redirect(url_for('views.loan'))  
         error = None 
-        if not request.form['loanAmount'] or float(request.form['loanAmount']) <= 0:
+        if not request.form['loanAmount']:
             error = "Loan amount is required"
-        elif (not request.form['years'] and not request.form['months']) or (int(request.form['years']) <=0 and int(request.form['months']) <= 0):
+        elif (not request.form['years'] and not request.form['months']):
+            error = "You must enter a minimum of 1 month or 1 year with a value greater than 0."
+        elif int(request.form['years']) == 0 and int(request.form['months']) == 0:
             error = "You must enter a minimum of 1 month or 1 year with a value greater than 0."
         elif not request.form['interestRate'] or float(request.form['interestRate']) <= 0:
             error = "Please enter an interest rate greater than 0"
@@ -55,17 +57,19 @@ def invest():
         if 'reset' in request.form:
                 return redirect(url_for('views.invest'))
         error = None
-        if (not request.form['initialDeposit'] and not request.form['monthlyDeposit']) or (float(request.form['initialDeposit']) <= 0 and float(request.form['monthlyDeposit']) <= 0):
+        if not request.form['initialDeposit'] and not request.form['monthlyDeposit']:
             error = 'You must enter a value greater than 0 for either Initial Deposit or Monthtly Deposit.'
-
-        elif not request.form['interestRate'] or float(request.form['interestRate']) <= 0:
+        elif float(request.form['initialDeposit']) == 0 and float(request.form['monthlyDeposit']) == 0:
+            error = 'You must enter a value greater than 0 for either Initial Deposit or Monthtly Deposit.'
+        elif not request.form['interestRate']:
             error = 'You must enter an interest rate greater than 0.'
-        elif not request.form['years'] or int(request.form['years']) <= 0:
+        elif not request.form['years']:
             error = 'You must enter a number of years greater than 0.' 
         if error is not None: 
             flash('Error: ' + error)
             return redirect(url_for('views.invest'))  
         else:
+
             if len(request.form['initialDeposit']) == 0:
                 initial_deposit = 0
             else:
