@@ -63,6 +63,14 @@ em {
     font-style: italic;
 }
 
+.flash {
+    background-color: rgba(204, 0, 0, 0.7);
+    text-align: center;
+    padding: 1rem;
+    border-radius: 20px;
+    max-width: 80%;
+    }
+
 /* global nav and footer styles*/
 nav, footer {
     background-color: #c0bcb8;

@@ -21,8 +21,7 @@ def loan():
             error = "Loan amount is required"
         elif (not request.form['years'] and not request.form['months']):
             error = "You must enter a minimum of 1 month or 1 year with a value greater than 0."
-        elif int(request.form['years']) == 0 and int(request.form['months']) == 0:
-            error = "You must enter a minimum of 1 month or 1 year with a value greater than 0."
+       
         elif not request.form['interestRate'] or float(request.form['interestRate']) <= 0:
             error = "Please enter an interest rate greater than 0"
         elif not request.form['payFrequency']:
@@ -41,6 +40,10 @@ def loan():
                 months = 0
             else:
                 months = int(request.form['months'])
+            if years == 0 and months == 0:
+                error = "You must enter a minimum of 1 month or 1 year with a value greater than 0."
+                flash("Error: " + error)
+                return redirect(url_for('views.loan'))
             pay_frequency = request.form['payFrequency']
             
             total_months = (years * 12) + months
@@ -59,8 +62,6 @@ def invest():
         error = None
         if not request.form['initialDeposit'] and not request.form['monthlyDeposit']:
             error = 'You must enter a value greater than 0 for either Initial Deposit or Monthtly Deposit.'
-        elif float(request.form['initialDeposit']) == 0 and float(request.form['monthlyDeposit']) == 0:
-            error = 'You must enter a value greater than 0 for either Initial Deposit or Monthtly Deposit.'
         elif not request.form['interestRate']:
             error = 'You must enter an interest rate greater than 0.'
         elif not request.form['years']:
@@ -78,6 +79,13 @@ def invest():
                 monthly_deposit = 0
             else:    
                 monthly_deposit = float(request.form['monthlyDeposit'])
+            if initial_deposit == 0 and monthly_deposit == 0: 
+                error = 'You must enter a value greater than 0 for either Initial Deposit or Monthtly Deposit.'
+                flash('Error: ' + error)
+                return redirect(url_for('views.invest'))  
+                
+
+            
             
             interest_rate = float(request.form['interestRate']) 
             years = int(request.form['years'])
