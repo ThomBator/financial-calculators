@@ -59,6 +59,7 @@
     {% for message in get_flashed_messages() %}
     <div id="flash" class="flash">
       {{message}}
+      <br />
       <button type="button" id="alert">
         <span aria-hidden="true">&times;</span>
       </button>
