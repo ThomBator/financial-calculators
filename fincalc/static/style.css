@@ -2,7 +2,7 @@
 /* Reset*/
 *, *::after, *::before {
     margin: 0;
-    padding: 0; 
+    padding: 0;
     box-sizing: border-box;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -11,7 +11,7 @@
 }
 /* Global Styles */
 body {
-    
+
     background-color: #f9f8f7;
     padding-top: 8rem;
     padding-bottom: 8rem;
@@ -20,7 +20,7 @@ body {
 
  header, main, .flash, nav ul, .hero, .mobileButtonDiv, footer p {
 
-    max-width: 80%; 
+    max-width: 80%;
     margin: 0.5rem auto 0.5rem auto;
 
 }
@@ -31,7 +31,7 @@ main {
 
  p {
     line-height: 1.3;
-    font-weight: 300;
+    font-weight: 400;
     margin-bottom: 0.5rem;
 }
 
@@ -40,7 +40,7 @@ h1, h2 {
     line-height: 0.9;
     margin-top: 0.1rem;
     color:#3a3938;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
 }
 .mainPageSections {
     padding: 0.5 rem 0rem 0.5rem 0rem;
@@ -52,7 +52,7 @@ button {
     color: white;
     padding: 0.5rem;
     border-radius: 160rem;
-    
+
 }
 
 button:hover {
@@ -83,19 +83,19 @@ nav, footer {
 nav li {
     list-style: none;
     margin-bottom: 0.25rem;
-    
+
 
 }
 
 nav a {
     text-decoration: none;
-    font-weight: 500; 
+    font-weight: 500;
     color: #3a3938;
 }
 
 nav a:hover {
     color: #7b7771;
-} 
+}
 
 nav {
     position: fixed;
@@ -108,7 +108,7 @@ footer {
     width: 100%;
     bottom: 0px;
 }
-/*mobile nav styles */ 
+/*mobile nav styles */
 
 .mobileNavToggle {
     background: transparent;
@@ -136,7 +136,7 @@ footer {
     }
 
         .header{
-         display: flex; 
+         display: flex;
          gap: 1rem;
     }
    .flexItem {
@@ -153,14 +153,14 @@ footer {
     justify-content: flex-start;
 
 
-    }   
+    }
 
     .pcNav li {
         margin-right: 2rem;
     }
 
      .displayResults {
-        display: flex; 
+        display: flex;
         justify-content: flex-start;
         gap: 5rem;
 
@@ -168,7 +168,7 @@ footer {
 
 }
 
-/* end media queries */ 
+/* end media queries */
 
 
 /* calculator form styles */
@@ -180,12 +180,12 @@ footer {
     border-radius: 160rem;
     border: 0.1rem solid #ccc;
     max-width: 6rem;
-    padding: 0.25rem; 
+    padding: 0.25rem;
     text-indent: .25rem;
 }
 
 .calcInput input:focus, .calcInput select:focus {
-    
+
     background-color: #fcfaf8;
 }
 
@@ -200,8 +200,8 @@ footer {
 }
 
 .calcButtons {
-    display: flex; 
-    
+    display: flex;
+
     gap: 1rem;
     margin-top: 0.25rem;
 }
