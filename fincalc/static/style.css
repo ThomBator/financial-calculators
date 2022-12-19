@@ -31,12 +31,23 @@ main {
     margin-bottom: 5rem;
 }
 
+.homeMain {
+    margin-top: 2rem;
+}
+
+
  p {
     line-height: 1.5;
     font-weight: 400;
     margin-bottom: 0.5rem;
 }
 
+.sectionBG{
+    background-color: whitesmoke;
+    border: 1px solid #3a3938;
+    padding: 1rem;
+    border-radius: 1rem;
+}
 
 .images {
     border: 2px solid white;
@@ -198,7 +209,7 @@ footer {
 
      .displayResults {
         display: flex;
-        justify-content: flex-start;
+        justify-content: center;
         gap: 5rem;
 
     }
@@ -259,7 +270,8 @@ footer {
 }
 
 .calcOutput {
-    margin-top: 0.5rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
 }
 
 .calcOutput hr {

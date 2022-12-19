@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content%}
 
-<header class="header">
+<header class="header sectionBG">
   <div class="flexItem">
     <img
       class="hero images"
@@ -33,9 +33,9 @@
   </div>
 </header>
 
-<main>
+<main class = "homeMain sectionBG">
   <div class="horizontalRuleDiv">
-    <hr />
+
   </div>
   <section class="mainPageSections">
     <h2>Reach Your Financial Goals Faster</h2>
@@ -53,7 +53,9 @@
       <a href="{{url_for('views.loan')}}">Loan Calculator</a> can help you see
       the true cost first.
     </p>
+    <hr>
   </section>
+
 
   <section class="mainPageSections">
     <h3>Step #2: Invest For Your Future</h3>

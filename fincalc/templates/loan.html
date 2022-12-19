@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block title %}Loans{% endblock %} {% block content
 %}
 
-<header class="header">
+<header class="header sectionBG">
   <div class="flexItem">
     <img class="hero images" src="static\pexels-mikhail-nilov-6963889.jpg" alt="A couple looking at their bills" />
   </div>
@@ -77,12 +77,12 @@
         <button  class="calcButtonStyle" type="submit" name="reset" value="reset">Reset</button>
       </div>
     </form>
-     <hr/>
+
   </div>
 </header>
 
 {% if LOAN_DETAILS and SUBMIT %}
-<main class="displayResults">
+<main class="displayResults sectionBG">
 
   <div class="calcOutput">
     <h2>Results:</h2>
