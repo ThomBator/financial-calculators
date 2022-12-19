@@ -3,19 +3,33 @@
 <header class="header">
   <div class="flexItem">
     <img
-      class="hero"
+      class="hero images"
       src="static\pexels-jack-sparrow-4046110.jpg"
       alt="A couple looking at thier laptop"
     />
   </div>
   <div class="homeHeaderText flexItem">
-    <h1>Spend Less. Invest More. Repeat.</h1>
-    <p>
-      Financial literacy is for everybody. Whatever your situation, you can
-      improve it with a few key skills. Two of the most important are
-      understanding debt and investing. Our financial calculators can help you
-      on your journey.
-    </p>
+    <div class="homeHeaderHeadlines">
+
+      <h1>GET YOUR MONEY RIGHT</h1>
+    </div>
+
+    <div class="homeHeaderBody">
+
+      <p class="heroP">Looking to improve your personal finances? Our loan and investment calculators can help. Click below to start exploring. </p>
+
+    </div>
+
+      <div class="homeButtons">
+
+
+      <form action="{{url_for('views.loan')}}">
+         <button typ="submit" class="homeButtonsStyle">Loan Calculator</button>
+      </form>
+      <form action="{{url_for('views.invest')}}"> <button class="homeButtonsStyle">Investment Calculator</button></form>
+
+      </div>
+    </div>
   </div>
 </header>
 
@@ -24,7 +38,10 @@
     <hr />
   </div>
   <section class="mainPageSections">
-    <h2>Step #1: Pay Down Your Debt</h2>
+    <h2>Reach Your Financial Goals Faster</h2>
+  </section>
+  <section class="mainPageSections">
+    <h3>Step #1: Pay Down Your Debt</h3>
     <p>
       For many of us, debt is an inevitable part of modern life. Housing,
       healthcare, car payments. The list goes on, but not all debt is
@@ -39,7 +56,7 @@
   </section>
 
   <section class="mainPageSections">
-    <h2>Step #2: Invest For Your Future</h2>
+    <h3>Step #2: Invest For Your Future</h3>
     <p>
       Investing lets you make interest rates work for you. When you were in
       debt, interest rates meant you got back way less money than you put in.

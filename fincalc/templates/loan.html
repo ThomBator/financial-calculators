@@ -3,7 +3,7 @@
 
 <header class="header">
   <div class="flexItem">
-    <img class="hero" src="static\pexels-mikhail-nilov-6963889.jpg" alt="A couple looking at their bills" />
+    <img class="hero images" src="static\pexels-mikhail-nilov-6963889.jpg" alt="A couple looking at their bills" />
   </div>
 
   <div class="headerText flexItem">
@@ -72,8 +72,8 @@
       </div>
 
       <div class="calcButtons">
-        <button type="submit" name="submit" value="submit">Submit</button>
-        <button type="submit" name="reset" value="reset">Reset</button>
+        <button class="calcButtonStyle" type="submit" name="submit" value="submit">Submit</button>
+        <button  class="calcButtonStyle" type="submit" name="reset" value="reset">Reset</button>
       </div>
     </form>
   </div>
@@ -81,7 +81,7 @@
 
 {% if LOAN_DETAILS and SUBMIT %}
 <main class="displayResults">
-  
+
   <div class="calcOutput">
     <h2>Results:</h2>
     <hr />
