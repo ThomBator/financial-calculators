@@ -10,20 +10,9 @@
   <div class="headerText flexItem">
     <h1>Investment Calculator</h1>
     <p>
-      If you invested $10,000 in the
-      <a href="https://en.wikipedia.org/wiki/S%26P_500" target="_blank">S&P 500 index </a>fund
-      in 1980 it would be worth over $1,000,000 today. Regular monthly
-      contributions can add up to life-changing amounts over time. Use our
-      investment calculator to see what your financial future could look like. All results are based on annual compounding.
-      <em>
-          Note: by default this calculator uses the S&P 500's
-          <a
-            href="https://www.investopedia.com/ask/answers/042415/what-average-annual-return-sp-500.asp"
-            target="_blank">average annual return</a
-          >
-          of 11.82%. You can also input a custom interest rate.
-              </p>
-      </em>
+     Regular monthly contributions can add up to life-changing amounts over time. Default interest rate based on S&P 500 historical average.</p>
+
+      <hr/>
     <form method="POST" id="investForm" class="form">
       <div class="calcInput">
         <label for="initialDeposit">Initial Deposit($): </label
@@ -61,7 +50,7 @@
           value="11.82"
           {% endif %}
         />
-
+        </div>
         <div class="calcInput">
         <label for="years">Years to Invest: </label
         ><input
@@ -72,14 +61,15 @@
           min="1"
           value="{{request.form['years']}}"
         />
-
+          </div>
 
         <div class="calcButtons">
           <button class="calcButtonStyle" type="submit" name="submit" value="submit">Submit</button>
           <button class="calcButtonStyle" type="submit" name="reset" value="reset">Reset</button>
         </div>
-      </div>
+
     </form>
+    <hr/>
   </div>
 </header>
 
@@ -87,7 +77,7 @@
   <main class="displayResults">
     <div class="calcOutput">
       <h2>Results: </h2>
-      <hr/>
+      <br>
       <ul>
         <li>Value After {{INVEST_DETAILS.years}} Years : ${{INVEST_DETAILS.total}}</li>
         <li>Your Total Deposits: ${{INVEST_DETAILS.total_deposits}}</li>

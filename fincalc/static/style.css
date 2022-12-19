@@ -37,6 +37,7 @@ main {
     margin-bottom: 0.5rem;
 }
 
+
 .images {
     border: 2px solid white;
     border-radius: 1rem;
@@ -210,7 +211,13 @@ footer {
 
 
 /* calculator form styles */
+
+
+.form {
+    margin-bottom: 1rem;
+}
 .calcInput {
+    margin-top: 1rem;
     padding: 0.25rem;
 }
 
