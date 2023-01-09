@@ -12,7 +12,7 @@
 /* Global Styles */
 body {
 
-    background-color: #f9f8f7;
+    background-image: linear-gradient( hsl(28, 9%, 72%), #f9f8f7);
     padding-top: 8rem;
     padding-bottom: 8rem;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -43,7 +43,7 @@ main {
 }
 
 .sectionBG{
-    background-color: whitesmoke;
+    background-color: #f5f5f5aa;
     border: 1px solid #3a3938;
     padding: 1rem;
     border-radius: 1rem;
@@ -85,26 +85,23 @@ h1, h2, h3 {
 
     }
 
-.homeButtonsStyle {
+.homeButtonsStyle, .calcButtonStyle {
     background-color:#2e2c2b;
+    transition: transform .2s;
     color: white;
     font-weight: 700;
     padding: 1rem;
     border-radius: 160rem;
 }
 
-.calcButtonStyle {
-    background-color:#2e2c2b;
-    color: white;
-    font-weight: 700;
-    padding: 0.8rem;
-    border-radius: 160rem;
 
+.homeButtonsStyle:hover, .calcButtonStyle:hover {
+    background-color:  #7b7771;
+    transform: scale(1.1);
 }
 
-button:hover {
-    background-color:#3b3937;
-}
+
+
 
 em {
     font-style: italic;
@@ -123,7 +120,7 @@ em {
 
 /* global nav and footer styles*/
 nav, footer {
-    background-color: #c0bcb8;
+    background-color: #ccc6c2ee;
     padding: 0.5rem 0 0.5rem 0;
 }
 
@@ -138,10 +135,20 @@ nav a {
     text-decoration: none;
     font-weight: 500;
     color: #3a3938;
+
+}
+
+nav li {
+     transition: transform 0.2s;
+}
+
+nav li:hover {
+    transform: scale(1.2);
 }
 
 nav a:hover {
     color: #7b7771;
+
 }
 
 nav {
@@ -160,6 +167,10 @@ footer {
 .mobileNavToggle {
     background: transparent;
     border: none;
+}
+
+.mobileNavToggleImg, .mobileButtonDiv, .mobileNavToggle{
+    border-radius: 50%;
 }
 
 .navDiv {
