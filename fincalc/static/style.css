@@ -312,6 +312,6 @@ footer {
     margin-top: 2rem;
 }
 
-#results {
-    margin-top: 4rem;
+#investResult, #loanResult{
+    padding-top: 10rem;
 }

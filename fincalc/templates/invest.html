@@ -10,9 +10,11 @@
   <div class="headerText flexItem">
     <h1>Investment Calculator</h1>
     <p>
-     Regular monthly contributions can add up to life-changing amounts over time. Default interest rate based on S&P 500 historical average.</p>
+      Regular monthly contributions can add up to life-changing amounts over
+      time. Default interest rate based on S&P 500 historical average.
+    </p>
 
-      <hr/>
+    <hr />
     <form method="POST" id="investForm" class="form">
       <div class="calcInput">
         <label for="initialDeposit">Initial Deposit($): </label
@@ -44,14 +46,21 @@
           name="interestRate"
           step="0.01"
           min="0.1"
-          {% if SUBMIT %}
+          {%
+          if
+          SUBMIT
+          %}
           value="{{request.form['interestRate']}}"
-          {% else %}
+          {%
+          else
+          %}
           value="11.82"
-          {% endif %}
+          {%
+          endif
+          %}
         />
-        </div>
-        <div class="calcInput">
+      </div>
+      <div class="calcInput">
         <label for="years">Years to Invest: </label
         ><input
           type="number"
@@ -61,43 +70,54 @@
           min="1"
           value="{{request.form['years']}}"
         />
-          </div>
+      </div>
 
-        <div class="calcButtons">
-          <button class="calcButtonStyle" type="submit" name="submit" value="submit">Submit</button>
-          <button class="calcButtonStyle" type="submit" name="reset" value="reset">Reset</button>
-        </div>
-
+      <div class="calcButtons">
+        <button
+          class="calcButtonStyle"
+          type="submit"
+          name="submit"
+          value="submit"
+        >
+          Submit
+        </button>
+        <button
+          class="calcButtonStyle"
+          type="submit"
+          name="reset"
+          value="reset"
+        >
+          Reset
+        </button>
+      </div>
     </form>
-
   </div>
 </header>
 
-{% if SUBMIT  %}
-  <main class="displayResults sectionBG">
-    <div class="calcOutput">
-      <h2>Results: </h2>
-      <br>
-      <ul>
-        <li>Value After {{INVEST_DETAILS.years}} Years : ${{INVEST_DETAILS.total}}</li>
-        <li>Your Total Deposits: ${{INVEST_DETAILS.total_deposits}}</li>
-        <li>Total Profits: ${{INVEST_DETAILS.profit}} </li>
-
-      </ul>
-
-
-
-    </div>
-    <div class="chartDiv">
-      <img src="data:image/png;base64 ,{{INVEST_GRAPH}}" alt="A graph showing investment returns by year" class="chart">
-    </div>
-
-  </main>
-  <div id="results"</div>
+{% if SUBMIT %}
+<div id="investResult"></div>
+<main class="displayResults sectionBG">
+  <div class="calcOutput">
+    <h2>Results:</h2>
+    <br />
+    <ul>
+      <li>
+        Value After {{INVEST_DETAILS.years}} Years : ${{INVEST_DETAILS.total}}
+      </li>
+      <li>Your Total Deposits: ${{INVEST_DETAILS.total_deposits}}</li>
+      <li>Total Profits: ${{INVEST_DETAILS.profit}}</li>
+    </ul>
+  </div>
+  <div class="chartDiv">
+    <img
+      src="data:image/png;base64 ,{{INVEST_GRAPH}}"
+      alt="A graph showing investment returns by year"
+      class="chart"
+    />
+  </div>
+</main>
 <script defer>
-  const element = document.getElementById("results");
+  const element = document.getElementById("investResult");
   element.scrollIntoView();
 </script>
-{% endif %}
-
-{% endblock%}
+{% endif %} {% endblock%}

@@ -82,9 +82,13 @@
 </header>
 
 {% if LOAN_DETAILS and SUBMIT %}
+
+<div id="loanResult"></div>
+
 <main class="displayResults sectionBG">
 
   <div class="calcOutput">
+    <div id="results"</div>
     <h2>Results:</h2>
     <br>
     <ul>
@@ -101,11 +105,12 @@
       src="data:image/png;base64 ,{{LOAN_CHART}}"
       alt="A pie chart comparing interest to principal"
     />
+
   </div>
 </main>
-<div id="results"</div>
+
 <script defer>
-  const element = document.getElementById("results");
+  const element = document.getElementById("loanResult");
   element.scrollIntoView();
 </script>
 {% endif %} {% endblock %}
