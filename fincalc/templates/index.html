@@ -1,48 +1,48 @@
 {% extends 'base.html' %} {% block content%}
 
-<header class="header headerMain sectionBG">
-  <div class="flexItem">
+<header >
+  <div >
     <img
-      class="hero images"
+      
       src="static\pexels-jack-sparrow-4046110.jpg"
       alt="A couple looking at thier laptop"
     />
   </div>
-  <div class="headerText flexItem">
-    <div class="homeHeaderHeadlines">
+  <div >
+    <div >
 
       <h1>GET YOUR MONEY RIGHT</h1>
     </div>
 
-    <div class="homeHeaderBody">
+    <div>
 
-      <p class="heroP">Looking to improve your personal finances? Our loan and investment calculators can help. Click below to start exploring. </p>
+      <p >Looking to improve your personal finances? Our loan and investment calculators can help. Click below to start exploring. </p>
 
     </div>
 
-      <div class="homeButtons">
+      <div>
 
 
       <form action="{{url_for('views.loan')}}">
-         <button typ="submit" class="homeButtonsStyle">Loan Calculator</button>
+         <button typ="submit">Loan Calculator</button>
       </form>
-      <form action="{{url_for('views.invest')}}"> <button class="homeButtonsStyle">Investment Calculator</button></form>
+      <form action="{{url_for('views.invest')}}"> <button >Investment Calculator</button></form>
 
       </div>
     </div>
   </div>
 </header>
 
-<main class = "homeMain sectionBG">
-  <div class="horizontalRuleDiv">
+<main >
+  <div >
 
   </div>
-  <section class="mainPageSections">
+  <section >
     <h2>Reach Your Financial Goals Faster</h2>
   </section>
-  <section class="mainPageSections">
+  <section >
     <h3>Step #1: Pay Down Your Debt</h3>
-    <p class="mainPageP">
+    <p >
       For many of us, debt is an inevitable part of modern life. Housing,
       healthcare, car payments. The list goes on, but not all debt is
       inevitable. Things like reducing credit card spending or getting a more
@@ -57,9 +57,9 @@
   </section>
 
 
-  <section class="mainPageSections">
+  <section >
     <h3>Step #2: Invest For Your Future</h3>
-    <p class="mainPageP">
+    <p >
       Investing lets you make interest rates work for you. When you were in
       debt, interest rates meant you got back way less money than you put in.
       When you invest, its the other way around. Even investing relatively small

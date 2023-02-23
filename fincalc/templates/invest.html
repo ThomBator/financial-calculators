@@ -1,13 +1,12 @@
 {% extends 'base.html'%} {% block title %}Invest{% endblock %} {%block content%}
-<header class="header sectionBG">
-  <div class="flexItem">
+<header>
+  <div>
     <img
-      class="hero images"
       src="static\pexels-rodnae-productions-5637572.jpg"
       alt="Elderly couple holding flowers"
     />
   </div>
-  <div class="headerText flexItem">
+  <div>
     <h1>Investment Calculator</h1>
     <p>
       Regular monthly contributions can add up to life-changing amounts over
@@ -16,7 +15,7 @@
 
     <hr />
     <form method="POST" id="investForm" class="form">
-      <div class="calcInput">
+      <div>
         <label for="initialDeposit">Initial Deposit($): </label
         ><input
           type="number"
@@ -27,7 +26,7 @@
           value="{{request.form['initialDeposit']}}"
         />
       </div>
-      <div class="calcInput">
+      <div>
         <label for="monthlyDeposit">Monthly Deposit($): </label
         ><input
           type="number"
@@ -38,7 +37,7 @@
           value="{{request.form['monthlyDeposit']}}"
         />
       </div>
-      <div class="calcInput">
+      <div>
         <label for="interestRate">Interest Rate(%): </label
         ><input
           type="number"
@@ -60,7 +59,7 @@
           %}
         />
       </div>
-      <div class="calcInput">
+      <div>
         <label for="years">Years to Invest: </label
         ><input
           type="number"
@@ -72,23 +71,9 @@
         />
       </div>
 
-      <div class="calcButtons">
-        <button
-          class="calcButtonStyle"
-          type="submit"
-          name="submit"
-          value="submit"
-        >
-          Submit
-        </button>
-        <button
-          class="calcButtonStyle"
-          type="submit"
-          name="reset"
-          value="reset"
-        >
-          Reset
-        </button>
+      <div>
+        <button type="submit" name="submit" value="submit">Submit</button>
+        <button type="submit" name="reset" value="reset">Reset</button>
       </div>
     </form>
   </div>
@@ -96,8 +81,8 @@
 
 {% if SUBMIT %}
 <div id="investResult"></div>
-<main class="displayResults sectionBG">
-  <div class="calcOutput">
+<main>
+  <div>
     <h2>Results:</h2>
     <br />
     <ul>
@@ -108,7 +93,7 @@
       <li>Total Profits: ${{INVEST_DETAILS.profit}}</li>
     </ul>
   </div>
-  <div class="chartDiv">
+  <div>
     <img
       src="data:image/png;base64 ,{{INVEST_GRAPH}}"
       alt="A graph showing investment returns by year"

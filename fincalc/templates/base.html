@@ -15,22 +15,22 @@
   <body>
     <nav>
       <div x-data="{isOpen : false}">
-        <div class="mobileButtonDiv">
+        <div>
           <button
-            class="mobileNavToggle"
+            
             type="button"
             aria-label="toggle menu"
             @click="isOpen = !isOpen"
           >
             <img
-              class="mobileNavToggleImg"
+              
               src="static\baseline_menu_black_24dp.png"
               alt=""
             />
           </button>
         </div>
-        <div class="pcNav">
-          <ul class="pcNav">
+        <div >
+          <ul ">
             <li><a href="{{url_for('views.index')}}">Home</a></li>
             <li><a href="{{url_for('views.loan')}}">Loan Calculator</a></li>
             <li>
@@ -38,7 +38,7 @@
             </li>
           </ul>
         </div>
-        <div x-show="isOpen" class="mobileNav">
+        <div x-show="isOpen" >
           <ul>
             <hr />
             <li><a href="{{url_for('views.index')}}">Home</a></li>
@@ -56,10 +56,10 @@
     <!--Mobile menu button-->
 
     {% for message in get_flashed_messages() %}
-    <div id="flash" class="flash">
+    <div >
       {{message}}
       <br />
-      <button type="button" id="alert">
+      <button type="button" >
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
