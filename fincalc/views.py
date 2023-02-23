@@ -119,13 +119,13 @@ def loan_calculator(loan_amount: float, interest_rate: float, pay_frequency: str
 def pie_chart(total_loan : float, interest_paid: float) -> base64:
     pie_list = [total_loan, interest_paid] #list of values for pie chart
     pie_labels = ["Principal", "Interest"]
-    colors = sns.color_palette("Paired")[0:2]
+    colors = sns.dark_palette("#198754", reverse=True)
     fig = Figure()
     ax = fig.subplots()
-    fig.set_facecolor("#f9f8f7")
+    fig.set_facecolor("#FFF")
     ax.pie(pie_list, labels=pie_labels,colors = colors, autopct='%.1f%%', explode = [0, .025], )
     buf = BytesIO()
-    fig.savefig(buf, format="png", bbox_inches='tight', pad_inches=0)
+    fig.savefig(buf, format="png", bbox_inches='tight', pad_inches=0.25)
     data = base64.b64encode(buf.getbuffer()).decode("ascii")
     return data
 
@@ -163,13 +163,14 @@ def invest_calculator(initial_deposit: float, monthly_deposit: float, avg_annual
 def line_graph(running_returns :list, years :int) -> base64:
 
     years_list = list(range(1, years + 1))
-    colors = sns.color_palette("Paired")[0:2]
+    
     fig = Figure()
     ax = fig.subplots()
-    fig.set_facecolor("#f9f8f7")
-    ax.plot(years_list, running_returns)
+    
+    fig.set_facecolor("#FFF")
+    ax.plot(years_list, running_returns, color="#198754")
     ax.set(title=f"Returns over {years} years", xlabel="Years", ylabel="Returns")
     buf = BytesIO()
-    fig.savefig(buf, format="png", bbox_inches='tight', pad_inches=0)
+    fig.savefig(buf, format="png", bbox_inches='tight', pad_inches=0.25)
     data = base64.b64encode(buf.getbuffer()).decode("ascii")
     return data
