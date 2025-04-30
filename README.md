@@ -5,5 +5,5 @@ Other technologies used include vanilla javascript, css and alpine.js. The pytho
 
 [View Live Version](https://tbator1.pythonanywhere.com/)
 
-[Investment Calcuator Form Screenshot](./moneycalcs1.png)
-[Investment Calculator Resutls Screenshot](./moneycalcs2.png)
+![Investment Calcuator Form Screenshot](./moneycalcs1.png)
+![Investment Calculator Resutls Screenshot](./moneycalcs2.png)
